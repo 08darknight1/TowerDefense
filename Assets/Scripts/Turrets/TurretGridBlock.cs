@@ -15,7 +15,7 @@ public class TurretGridBlock : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && _canBeUsed)
         {
             var mousePos = Input.mousePosition;
 
@@ -38,7 +38,7 @@ public class TurretGridBlock : MonoBehaviour
                     Debug.Log("Hit TurretGridBlock from " + gameObject.name + "! Opening Turret Options!");
                     var turretOptionCanvas = Instantiate(TurretOptionsCanvas);
                     turretOptionCanvas.transform.SetParent(gameObject.transform);
-                    turretOptionCanvas.transform.localPosition = new Vector3(0, 1, 0);
+                    turretOptionCanvas.transform.localPosition = new Vector3(0, 3, 0);
                 }
             }
         }

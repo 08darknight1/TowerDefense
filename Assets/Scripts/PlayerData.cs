@@ -1,25 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerData : MonoBehaviour
+public static class PlayerData
 {
-    [SerializeField] private int _money;
+    public static int Money = 5;
 
-    [SerializeField] private int _life = 3;
-
-    public int ReturnPlayerLife()
-    {
-        return _life;
-    }
-
-    public int ReturnPlayerMoney()
-    {
-        return _money;
-    }
-
-    public void ChangePlayerMoney(int money)
-    {
-        _money += money;
-    }
+    public static int Life = 3;
 }

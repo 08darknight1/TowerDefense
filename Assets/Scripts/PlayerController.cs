@@ -14,6 +14,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        CheckForOpenMenusToClose();
+    }
+
+    private void CheckForOpenMenusToClose()
+    {
         if (Input.GetMouseButtonDown(1))
         {
             var allCanvas = GameObject.FindGameObjectsWithTag("TurretOptionsCanvas");

@@ -7,14 +7,8 @@ public class GameController : MonoBehaviour
 {
     private GameStage gameStage;
 
-    void Start()
+    public void DebugAddMoneyToPlayer(int ammount)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        PlayerData.Money += ammount;
     }
 }

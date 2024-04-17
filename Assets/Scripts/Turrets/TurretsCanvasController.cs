@@ -5,9 +5,32 @@ using UnityEngine.UI;
 
 public class TurretsCanvasController : MonoBehaviour
 {
-    private int contTillDeletion;
+    public GameObject[] UnitsToBuy;
 
     void Update()
+    {
+        CheckIfPlayerIsClickingOutside();
+    }
+
+    public void CheckToBuyNewTurret(int index)
+    {
+        var turretSelected = UnitsToBuy[index].GetComponent<TurretData>();
+
+        if(PlayerData.Money >= turretSelected.ReturnTurretCost())
+        {
+            PlayerData.Money -= turretSelected.ReturnTurretCost();
+
+            var newTurret = Instantiate(UnitsToBuy[index]);
+
+            newTurret.transform.SetParent(gameObject.transform.parent.transform);
+
+            newTurret.transform.localPosition = new Vector3(0, 0.75f, 0);
+
+            Destroy(gameObject);
+        }
+    }
+
+    private void CheckIfPlayerIsClickingOutside()
     {
         if (Input.GetMouseButtonDown(0))
         {
