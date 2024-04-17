@@ -105,7 +105,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &-6654197204707011019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63cdb4d903f0fbc4ebc7d2f73bf188d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gridPostion: 
   MaterialsForTerrain:
   - {fileID: 2100000, guid: 4673ef6003cf6fa49baf562a31cfa2d1, type: 2}
   - {fileID: 2100000, guid: dbf36fb81a919f048bf4a219366827e8, type: 2}
+  TurretOptionsCanvas: {fileID: 4585997407196603912, guid: 61165c59267ec5341954dd4b30634a0a, type: 3}

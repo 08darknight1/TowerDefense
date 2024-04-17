@@ -1,19 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
-    private string ActionTag;
+    private string _actionTag;
 
     void Start()
     {
-        ActionTag = "Idle";
+        _actionTag = "Idle";
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(1))
+        {
+            var allCanvas = GameObject.FindGameObjectsWithTag("TurretOptionsCanvas");
 
+            if (allCanvas.Length > 0)
+            {
+                for (int x = 0; x < allCanvas.Length; x++)
+                {
+                    Destroy(allCanvas[x]);
+                }
+            }
+        }
     }
 }

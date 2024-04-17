@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class TurretGridBlock : MonoBehaviour
@@ -12,6 +10,39 @@ public class TurretGridBlock : MonoBehaviour
     private MeshRenderer _renderer;
 
     public Material[] MaterialsForTerrain;
+
+    public GameObject TurretOptionsCanvas;
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            var mousePos = Input.mousePosition;
+
+            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            RaycastHit hit;
+
+            Debug.DrawRay(Camera.main.transform.position, mousePos - Camera.main.transform.position, Color.cyan, Mathf.Infinity);
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                if (hit.transform.name != gameObject.name)
+                {
+                    Debug.Log("Hit something else, sorry! Called: " + hit.transform.name);
+                }
+                else
+                {
+                    Debug.Log("Hit TurretGridBlock from " + gameObject.name + "! Opening Turret Options!");
+                    var turretOptionCanvas = Instantiate(TurretOptionsCanvas);
+                    turretOptionCanvas.transform.SetParent(gameObject.transform);
+                    turretOptionCanvas.transform.localPosition = new Vector3(0, 1, 0);
+                }
+            }
+        }
+    }
 
     public void SetGridPosition(int posX, int posY)
     {
