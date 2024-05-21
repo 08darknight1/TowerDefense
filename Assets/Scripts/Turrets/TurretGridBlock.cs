@@ -7,11 +7,22 @@ public class TurretGridBlock : MonoBehaviour
 
     private bool _canBeUsed;
 
+    private bool _turretSpawned;
+
     private MeshRenderer _renderer;
 
     public Material[] MaterialsForTerrain;
 
     public GameObject TurretOptionsCanvas;
+
+    private TurretData _turretData;
+
+    private PlayerController _playerController;
+
+    void Start()
+    {
+        _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+    }
 
     void Update()
     {
@@ -35,10 +46,46 @@ public class TurretGridBlock : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Hit TurretGridBlock from " + gameObject.name + "! Opening Turret Options!");
-                    var turretOptionCanvas = Instantiate(TurretOptionsCanvas);
-                    turretOptionCanvas.transform.SetParent(gameObject.transform);
-                    turretOptionCanvas.transform.localPosition = new Vector3(0, 3, 0);
+                    if (_playerController._actionTag != PlayerActionTag.MOVING_TURRET)
+                    {
+                        Debug.Log("Hit TurretGridBlock from " + gameObject.name + "! Opening Turret Options!");
+                        var turretOptionCanvas = Instantiate(TurretOptionsCanvas);
+                        turretOptionCanvas.transform.SetParent(gameObject.transform);
+                        turretOptionCanvas.transform.localPosition = new Vector3(0, 4, 0);
+                        turretOptionCanvas.name = "TurretPlacingOptionsCanvas";
+                    }
+                    else
+                    {
+                        if (!_turretSpawned)
+                        {
+                            //Disable all other stuff from the previous owner of the turret
+                            var turretOptionsCanvas = GameObject.Find("TurretPlacingOptionsCanvas");
+
+                            var oldParentGridBlock = turretOptionsCanvas.transform.parent.gameObject.GetComponent<TurretGridBlock>();
+
+                            var turretName = oldParentGridBlock.ReturnCurrentTurretData()._turretName;
+
+                            oldParentGridBlock.SetTurretSpawned(false, null);
+
+
+                            //Put all the turret stuff on the new grid block
+                            var turret = oldParentGridBlock.transform.Find(turretName).gameObject;
+
+                            turret.transform.parent = gameObject.transform;
+
+                            turret.transform.localPosition = new Vector3(0, 0.75f, 0);
+
+                            var turretData = turret.GetComponent<TurretData>();
+
+                            SetTurretSpawned(true, turretData);
+
+                            turretOptionsCanvas.GetComponent<TurretsCanvasController>().ApplyTurretsDefaultMaterial(turret);
+
+                            Destroy(turretOptionsCanvas);
+
+                            _playerController._actionTag = PlayerActionTag.IDLE;
+                        }
+                    }
                 }
             }
         }
@@ -73,8 +120,37 @@ public class TurretGridBlock : MonoBehaviour
         }
     }
 
+    public void SetTurretSpawned(bool ValueToSet, TurretData newTurretData)
+    {
+        _turretSpawned = ValueToSet;
+
+        if (ValueToSet)
+        {
+            _turretData = newTurretData;
+        }/*
+        else
+        {
+            _turretData = null;
+        }*/
+    }
+
+    public TurretData ReturnCurrentTurretData()
+    {
+        if (_turretSpawned)
+        {
+            return _turretData;
+        }
+
+        return null;
+    }
+
     public bool ReturnCanBeUsed()
     {
         return _canBeUsed;
+    }
+
+    public bool ReturnTurretSpawned()
+    {
+        return _turretSpawned;
     }
 }

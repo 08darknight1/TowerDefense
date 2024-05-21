@@ -1,35 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
+
+public enum PlayerActionTag {IDLE, MOVING_TURRET}
 
 public class PlayerController : MonoBehaviour
 {
-    private string _actionTag;
+    public PlayerActionTag _actionTag;
 
     void Start()
     {
-        _actionTag = "Idle";
-    }
-
-    void Update()
-    {
-        CheckForOpenMenusToClose();
-    }
-
-    private void CheckForOpenMenusToClose()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            var allCanvas = GameObject.FindGameObjectsWithTag("TurretOptionsCanvas");
-
-            if (allCanvas.Length > 0)
-            {
-                for (int x = 0; x < allCanvas.Length; x++)
-                {
-                    Destroy(allCanvas[x]);
-                }
-            }
-        }
+        _actionTag = PlayerActionTag.IDLE;
     }
 }

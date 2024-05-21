@@ -87,6 +87,11 @@ MonoBehaviour:
   _turretRateOfFire: 1
   _turretRange: 50
   _turretType: 1
+  _turretsMaterial:
+  - {fileID: 2100000, guid: e73ca14bb0aa02d488cddf6a135f9ac8, type: 2}
+  - {fileID: 2100000, guid: e73ca14bb0aa02d488cddf6a135f9ac8, type: 2}
+  - {fileID: 2100000, guid: a221853cfb9cdce4780948e3ee41a0f2, type: 2}
+  - {fileID: 2100000, guid: 89b669898479c9b4c93e4c0ba6b522fd, type: 2}
 --- !u!1 &1767333796615898058
 GameObject:
   m_ObjectHideFlags: 0

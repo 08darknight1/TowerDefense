@@ -117,11 +117,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1948042015009832709}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5891752655787477019}
+        m_TargetAssemblyTypeName: TurretsCanvasController, Assembly-CSharp
+        m_MethodName: MoveCurrentSpawnedTurret
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &6596777497078024473
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -260,7 +272,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 5773943829483862200}
   m_OnClick:
     m_PersistentCalls:
@@ -489,7 +501,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1917943078886460138
 GameObject:
@@ -929,7 +941,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3342148870987206415
 GameObject:
@@ -1191,11 +1203,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 6126625963402679234}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5891752655787477019}
+        m_TargetAssemblyTypeName: TurretsCanvasController, Assembly-CSharp
+        m_MethodName: CheckToDestroyCurrentTurret
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &8644913253303827626
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1469,6 +1493,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitsToBuy:
   - {fileID: 1405661154872802997, guid: 59b17fa1254ec4c4f9f83235e57a1bd0, type: 3}
+  _specialTurretsMaterial:
+  - {fileID: 2100000, guid: 511accaf3bebebb459c0e9fda5b6dbfe, type: 2}
+  _turretsMaterial:
+  - {fileID: 2100000, guid: e73ca14bb0aa02d488cddf6a135f9ac8, type: 2}
+  - {fileID: 2100000, guid: e73ca14bb0aa02d488cddf6a135f9ac8, type: 2}
+  - {fileID: 2100000, guid: a221853cfb9cdce4780948e3ee41a0f2, type: 2}
+  - {fileID: 2100000, guid: 89b669898479c9b4c93e4c0ba6b522fd, type: 2}
 --- !u!1 &4709550537730209859
 GameObject:
   m_ObjectHideFlags: 0
