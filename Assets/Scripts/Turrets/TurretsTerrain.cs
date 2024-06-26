@@ -26,6 +26,7 @@ public class TurretsTerrain : MonoBehaviour
         var turretsGrids = new GameObject();
         turretsGrids.name = "TurretsGrid";
         turretsGrids.transform.parent = gameObject.transform;
+        turretsGrids.transform.localPosition = Vector3.zero;
 
         var cont = 0;
 
@@ -33,7 +34,9 @@ public class TurretsTerrain : MonoBehaviour
         {
             for (int y = 0; y < ActiveTurretsInTerrain.GridSize.y; y++)
             {
-                var NewTurretPlace = Instantiate(TurretPlace);
+                var quaternionZero = new Quaternion(0, 0, 0, 0);
+                var NewTurretPlace = Instantiate(TurretPlace, Vector3.zero, quaternionZero);
+
                 NewTurretPlace.GetComponent<TurretGridBlock>().SetGridPosition(x, y);
                 NewTurretPlace.GetComponent<TurretGridBlock>().SetCanBeUsed(ActiveTurretsInTerrain.GetCell(x, y));
 
@@ -56,13 +59,15 @@ public class TurretsTerrain : MonoBehaviour
                     posYMultiplyer = 0;
                 }
 
-                var NewTurretPlacePos = NewTurretPlace.transform.position;
-                NewTurretPlace.transform.position = new Vector3(NewTurretPlacePos.x + (1 * posXMultiplyer),
+                NewTurretPlace.transform.parent = turretsGrids.transform;
+                NewTurretPlace.transform.localPosition = Vector3.zero;
+
+                var NewTurretPlacePos = NewTurretPlace.transform.localPosition;
+                NewTurretPlace.transform.localPosition = new Vector3(NewTurretPlacePos.x + (1 * posXMultiplyer),
                                                                 NewTurretPlacePos.y,
                                                                 NewTurretPlacePos.z - (1 * posYMultiplyer));
 
                 NewTurretPlace.name = "TurretPlace[" + cont + "]";
-                NewTurretPlace.transform.parent = turretsGrids.transform;
                 cont++;
             }
         }

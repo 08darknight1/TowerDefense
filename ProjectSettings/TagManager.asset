@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - TurretOptionsCanvas
+  - PlayerHQ
+  - Enemy
   layers:
   - Default
   - TransparentFX
