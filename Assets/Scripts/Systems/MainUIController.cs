@@ -14,6 +14,14 @@ public class MainUIController : MonoBehaviour
     void Update()
     {
         _playerMoneyText.text = "Money: " + PlayerData.Money.ToString();
-        _playerLifeText.text = "Life: " + PlayerData.Life.ToString();
+
+        if(PlayerData.Life > 0)
+        {
+            _playerLifeText.text = "Life: " + PlayerData.Life.ToString();
+        }
+        else
+        {
+            _playerLifeText.text = "Life: 0";
+        }
     }
 }

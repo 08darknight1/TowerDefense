@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHQ : MonoBehaviour
@@ -10,17 +8,14 @@ public class PlayerHQ : MonoBehaviour
 
         if(other.tag == "Enemy")
         {
-            var collidedEnemyData = other.gameObject.GetComponent<EnemyBehaviour>().ReturnEnemyData();
+            Debug.Log("An Enemy has enterred my collider!");
+            
+            var collidedEnemy = other.gameObject.GetComponent<EnemyBehaviour>();
 
-            switch(collidedEnemyData._enemyType)
+            switch(collidedEnemy.ReturnEnemyData()._enemyType)
             {
                 case EnemyType.Bomber:
-                    PlayerData.Life -= collidedEnemyData._enemyDamage;
-                    Destroy(other.gameObject);
-                break;
-
-                default:
-                    PlayerData.Life -= collidedEnemyData._enemyDamage;
+                    collidedEnemy.SetNewAiState(4);
                 break;
             }
         }

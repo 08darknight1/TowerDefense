@@ -19,9 +19,12 @@ public class TurretGridBlock : MonoBehaviour
 
     private PlayerController _playerController;
 
+    private GameController _gameController;
+
     void Start()
     {
         _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        _gameController = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
     void Update()
@@ -38,7 +41,7 @@ public class TurretGridBlock : MonoBehaviour
 
             Debug.DrawRay(Camera.main.transform.position, mousePos - Camera.main.transform.position, Color.cyan, Mathf.Infinity);
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity) && _gameController.ReturnCurrentGameState() == GameStage.GAMEPLAY)
             {
                 if (hit.transform.name != gameObject.name)
                 {
